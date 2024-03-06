@@ -1,5 +1,6 @@
 
 from fastapi import APIRouter
+from auth_model import Signup
 
 
 
@@ -7,9 +8,11 @@ signupRouter = APIRouter()
 
 
 
-@signupRouter.get("/login")
-async def signup():
-    pass
+@signupRouter.post("/login")
+async def signup(data:Signup):
+    await data.create()
+    return {"message":"User created successfully"}
+
 
 
 

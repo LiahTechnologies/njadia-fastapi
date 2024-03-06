@@ -11,8 +11,8 @@ class Signup(Document):
     password:str
     tel:int
     dob:str
-    selfie:UploadFile
-    docs:UploadFile
+    selfie:str
+    docs:str
 
     class settings:
         table_name="signup"
@@ -26,6 +26,6 @@ class Signup(Document):
             "password":"wodjdjd234jdjkljs23",
             "tel":3354666444,
             "dob":"12/03/1555",
-            "selfie":UploadFile,
-            "docs":UploadFile
+            "selfie":"hel",
+            "docs":"hell"
         }
