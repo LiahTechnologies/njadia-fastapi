@@ -1,8 +1,7 @@
 from fastapi  import FastAPI
 
-from task import task_router
 from database import init_db
-from routers import signup
+from routers import signup,task 
 
 
 
@@ -16,7 +15,7 @@ async def connect():
 
 
 
-app.include_router(task_router)
+# app.include_router(task_router)
 app.include_router(signup.signupRouter)
 
 

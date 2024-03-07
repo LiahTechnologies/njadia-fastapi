@@ -3,8 +3,8 @@
 import beanie
 import motor
 import motor.motor_asyncio
-from  model import Task
-from auth_model import Signup
+from models.model import Task
+from models.auth_model import User
 
 
 
@@ -14,4 +14,4 @@ async def init_db():
 
     await beanie.init_beanie(
         database= client.db_name,
-        document_models=[Task,Signup])
+        document_models=[User])
