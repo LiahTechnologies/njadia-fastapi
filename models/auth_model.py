@@ -1,14 +1,16 @@
 
 
 
-from typing import List, Type, Union, Any, Dict, Tuple, TypedDict
+import json
+from typing import List, Optional, Type, Union, Any, Dict, Tuple, TypedDict
 from pydantic import ValidationError
 from beanie import Document
-from fastapi import UploadFile, File
+from fastapi import status,Form
 from fastapi.types import UnionType
+from fastapi.exceptions import HTTPException
 # models.py
 from pydantic import BaseModel
-
+from fastapi.encoders import jsonable_encoder
 
 class User(Document):
     firstName:str
@@ -19,7 +21,17 @@ class User(Document):
     dob:str
     selfie:str
     docs:str
+    # args:Optional[str]
    
+
+# def checker(data: str = Form(...)):
+#     try:
+#         return User.model_validate_json(data)
+#     except ValidationError as e:
+#         raise HTTPException(
+#             detail=jsonable_encoder(e.errors()),
+#             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+#         )
 
     class settings:
         table_name="signup"
@@ -33,10 +45,18 @@ class User(Document):
             "password":"wodjdjd234jdjkljs23",
             "tel":"3354666444",
             "dob":"12/03/1555",
-            "selfie":"",
-            "docs":""
+            "selfie":"jk",
+            "docs":"lkjkj"
         }
 
+
+
+
+# def checker(data: str = Form(...)):
+#     try:
+#        return json.loads(data)
+#     except json.JSONDecodeError:
+#         raise HTTPException(status_code=400, detail='Invalid JSON data')
 
 
 
@@ -55,16 +75,13 @@ class Token(Document):
     token_type:str
     access_token:str
 
-Loc = Tuple[Union[int, str], ...]
-class _ErrorDictRequired(TypedDict):
-    loc: Loc
-    msg: str
-    type: str
 
-class ErrorDict(_ErrorDictRequired, total=False):
-    ctx: Dict[str, Any]
 
-class MultipleValidationErrors(Exception):
-    def __init__(self, errors: List[ErrorDict]):
-        super().__init__()
-        self.errors = errors
+class OTP(Document):
+    number:str
+
+
+class VERIFY_OTP(Document):
+    number:str
+    code:int
+
