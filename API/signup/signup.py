@@ -3,7 +3,7 @@ from datetime import datetime,timedelta
 from logging import Logger
 from beanie import Document, PydanticObjectId
 from dotenv import load_dotenv
-from fastapi import APIRouter, Form, HTTPException
+from fastapi import APIRouter, Form, HTTPException,status
 from jose import JWTError
 from pydantic import BaseModel, ValidationError
 from models.auth_model import OTP, VERIFY_OTP, User,Login,Token
@@ -17,7 +17,6 @@ from loguru import logger
 from bson import ObjectId
 from typing import List
 from core.services import security
-from core.services.status import status
 from uuid import uuid4
 import boto3
 import magic
