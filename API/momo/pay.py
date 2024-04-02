@@ -3,16 +3,18 @@ import requests
 import json
 import uuid
 from basicauth import encode
-
+from dotenv import load_dotenv
+import os
 
 class PayClass():
     # ================================================================================ Variables & Keys
 
+    load_dotenv()
     # Collections Subscription Key:
-    collections_subkey = "048c68b997fd47b384742853872cd7b1"
+    collections_subkey = os.environ['COLLECTION_SUBKEY']
 
     # Disbursement subscription key
-    disbursements_subkey = "a33b023ae9724c36b4a0ab8c2c042d7f"
+    disbursements_subkey = os.environ['DISBURSEMENT_SUBKEY']
 
     # Production collections basic authorisation key(Leave it blank if in sandbox mode)
     basic_authorisation_collections = ""

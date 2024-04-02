@@ -199,22 +199,6 @@ async def getAUser(user_id:str):
 
 
 
-# uploading files to AWS S3
-# 
-
-# twilio_token="83f3d69419c42918b1833609c5c79b43"
-
-# # os.getenv("TWILIO_ACCOUNT_TOKEN")
-# twilio_sid="ACe7b046fba241197d1cfc776dae1b3c0e"
-# # os.getenv("TWILIO_ACCOUNT_SID")
-# twilio_verification="VA946fe0f2b446edc4ed3a850d8336836b"
-# # os.getenv("TWILIO_ACCOUNT_VERIFICATION_ID")
-
-
-
-
-# client = Client(twilio_sid, twilio_token)
-# # verified_number =''
 
 
 @signupRouter.post("/otp")
@@ -236,12 +220,7 @@ async def otp_code(number:OTP):
     .create(to=verified_number, channel="sms")
     print(verification.status)
 
-    # otp_code = input("Please enter the OTP:")
-
-    # verification_check = client.verify.v2.services(verify_sid) \
-    # .verification_checks \
-    # .create(to=verified_number, code=otp_code)
-    # print(verification_check.status)
+    
 
     return {"message":"code has been sent"}
 
