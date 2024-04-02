@@ -23,6 +23,8 @@ import boto3
 import magic
 import os
 from twilio.rest import Client
+from dotenv import load_dotenv
+import os
 # from fastapi import FormObject 
 
 signupRouter = APIRouter()
@@ -217,9 +219,14 @@ async def getAUser(user_id:str):
 
 @signupRouter.post("/otp")
 async def otp_code(number:OTP):
-    account_sid = "ACe7b046fba241197d1cfc776dae1b3c0e"
-    auth_token = "83f3d69419c42918b1833609c5c79b43"
-    verify_sid = "VA946fe0f2b446edc4ed3a850d8336836b"
+
+    
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_ACCOUNT_TOKEN']
+    verify_sid = os.environ['TWILIO_ACCOUNT_VERIFICATION_ID']
+
+
+
     verified_number = "+237"+number.number
 
     client = Client(account_sid, auth_token)
@@ -243,10 +250,12 @@ async def otp_code(number:OTP):
 
 @signupRouter.post("/verify")
 async def verify_otp_code(code:VERIFY_OTP):
+    
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_ACCOUNT_TOKEN']
+    verify_sid = os.environ['TWILIO_ACCOUNT_VERIFICATION_ID']
 
-    account_sid = "ACe7b046fba241197d1cfc776dae1b3c0e"
-    auth_token = "83f3d69419c42918b1833609c5c79b43"
-    verify_sid = "VA946fe0f2b446edc4ed3a850d8336836b"
+   
     verified_number = "+237"+code.number
 
     client = Client(account_sid, auth_token)

@@ -8,13 +8,18 @@ from API.messaging import message
 
 
 
+
 app = FastAPI()
 
 @app.on_event("startup")
 async def startup_event():
     await init_db()
     await  message.startup_connect()
+    
     print("CONNECTED TO REDIS SUCCESSFULLY")
+
+    
+
 
 
 @app.on_event("shutdown")
